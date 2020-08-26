@@ -1,0 +1,86 @@
+Diseño de la base de datos
+
+
+*************************
+configuracion**********
+-id
+-nombre
+-quienes somos  
+-mision
+-vision
+-correo  comment institucional
+-telefono
+-facebook
+
+***********************
+
+organigrama 
+- id
+-puesto
+-id_user
+
+
+*****************
+user *******
+id
+-nombre
+-email
+-descripcion
+-telefonico
+-password
+-facebook
+-id_rol(*)
+**************
+rol
+-id
+-nombre
+
+*************
+
+galeria ******
+id
+titulo
+imagen
+***********
+
+****************
+publicaciones******
+id
+titulo
+-foto_portada
+-id_usuario comment autor de la publicacion 
+-fecha
+descripcion
+
+****************
+Eventos***
+id
+titulo
+descripcion
+fecha_del_evento
+foto_portada
+
+
+contacto*****
+id
+nombre
+email
+telefono
+mensaje
+
+
+****************
+modelo educativo****
+-id
+texto
+*****************
+conoce(conoce tu escuela)***
+id
+texto
+
+**************
+portada *****
+id
+titulo
+url_imagen
+
