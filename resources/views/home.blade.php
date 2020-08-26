@@ -54,25 +54,43 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Nombre</th>
+                                                <th>Email</th>
+                                                <th>Telefono</th>
+                                              
+                                                <th>Puesto</th>
+                                                <th>Accion</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Nombre</th>
+                                                <th>Email</th>
+                                                <th>Telefono</th>
+                                              
+                                                <th>Puesto</th>
+                                                <th>Accion</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
+                                           @foreach ($user as $item)
+                                            <tr>
+                                            <td>{{$item->name}}</td>
+                                            <td>{{$item->email}}</td>
+                                            <td>{{$item->telefono}}</td>
+                                            
+                                                <td>docente</td>
+                                                <td>  <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#exampleModal" data-whatever="{{ $item->id }}"
+                                                    data-href="{{ route('user.update', $item->id) }}"><i class="fa fa-edit"
+                                                        aria-hidden="true"></i></button>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                    data-target="#Modal_eliminar" data-id_eliminar="{{ $item->id }}"
+                                                    data-href="{{ route('user.destroy', $item->id) }}"><i class="fa fa-trash"
+                                                        aria-hidden="true"></i></button></td>
+                                                        @include('user.modal.modal_destroy')
+                                            </tr>
+                                           @endforeach 
                                         </tbody>
                                     </table>
                                         </div>
