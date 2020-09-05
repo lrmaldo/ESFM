@@ -33,7 +33,7 @@
                     <label class="col-md-4 control-label">Nombre:*</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" id ="name" class="form-control" name="name"  placeholder="Escribe el email del docente o administrativo" required>
+                        <input type="text" id ="name" class="form-control" name="name"  placeholder="Nombre del docente" required>
                         
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <label class="col-md-4 control-label">Email:*</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="email" id ="email" class="form-control" name="email" placeholder="Escribe el email valido de la tienda" required>
+                        <input type="email" id ="email" class="form-control" name="email" placeholder="Escribe el email del docente o administrativo" required>
                         
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                       <label class="col-md-4 control-label">Contraseña:*</label>
                       </div>
                       <div class="col-md-8">
-                          <input type="text" id ="contrasenia" class="form-control" name="contrasenia" value="secret" placeholder="Escribe el email del docente o administrativo" required>
+                          <input type="text" id ="contrasenia" class="form-control" name="contrasenia" value="secret" placeholder="Escribe la contraseña" required>
                           
                       </div>
                   </div>
@@ -86,7 +86,7 @@
                   <label class="col-md-4 control-label">Descripcion:*</label>
                   </div>
                   <div class="col-md-8">
-                  <textarea  id="descripcion"  rows="5" cols="50" class="form-control" name="descripcion" placeholder="Escribe una descripcion  lo puede dejar vacio"  ></textarea>
+                  <textarea  id="descripcion"  rows="6" cols="50" class="form-control" name="descripcion" placeholder="Escribe una descripcion de docente o administrativo, lo puede dejar vacio"  ></textarea>
                   </div>
                 </div>
                 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\portada;
 use Illuminate\Http\Request;
 use App\User;
 class HomeController extends Controller
@@ -25,5 +26,12 @@ class HomeController extends Controller
     {
         $user = User::all();
         return view('home',compact('user'));
+    }
+    public function portada(){
+        $portada = portada::find(1);
+        return view('portada.index',compact('portada'));
+    }
+    public function portadaUpdate(Request $request, $id){
+        return view('portada.index');
     }
 }

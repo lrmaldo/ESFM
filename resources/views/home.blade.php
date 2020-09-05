@@ -8,9 +8,9 @@
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
+                                    <div class="card-body">Foto portada</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                    <a class="small text-white stretched-link" href="{{route('portada')}}">Detalles</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -80,12 +80,10 @@
                                             <td>{{$item->telefono}}</td>
                                             
                                                 <td>docente</td>
-                                                <td>  <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#exampleModal" data-whatever="{{ $item->id }}"
-                                                    data-href="{{ route('user.update', $item->id) }}"><i class="fa fa-edit"
-                                                        aria-hidden="true"></i></button>
+                                                <td>  <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-edit"
+                                                        aria-hidden="true"></i></a>
                                                 <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                    data-target="#Modal_eliminar" data-id_eliminar="{{ $item->id }}"
+                                                data-target="#Modal_eliminar-{{$item->id}}" data-id_eliminar="{{ $item->id }}"
                                                     data-href="{{ route('user.destroy', $item->id) }}"><i class="fa fa-trash"
                                                         aria-hidden="true"></i></button></td>
                                                         @include('user.modal.modal_destroy')

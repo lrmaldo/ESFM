@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Role;
+use App\configuracion;
 class UserTableSeeder extends Seeder
 {
     /**
@@ -26,5 +27,25 @@ class UserTableSeeder extends Seeder
         $user->password = bcrypt('secret');
         $user->save();
         $user->roles()->attach($role_admin);
+
+        $configuracion = new configuracion();
+        $configuracion->nombre = 'null';
+        $configuracion->quienes = 'null';
+        $configuracion->mision = "null";
+        $configuracion->vision = 'null';
+        $configuracion->correo= 'null';
+        $configuracion->telefono ='null';
+        $configuracion->save();
+
+        /*  
+           $table->increments('id');
+            $table->string('nombre')->nullable();
+            $table->text('quienes')->nullnable()->comment('quienes somos');
+            $table->text('mision')->nullable();
+            $table->text('vision')->nullable();
+            $table->string('correo')->nullable();
+            $table->string('telefono')->nullable();
+            $table->timestamps();
+        */
     }
 }
