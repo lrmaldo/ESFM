@@ -4,6 +4,10 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Role;
 use App\configuracion;
+use App\portada;
+use App\conoce;
+use App\modelo;
+
 class UserTableSeeder extends Seeder
 {
     /**
@@ -37,6 +41,21 @@ class UserTableSeeder extends Seeder
         $configuracion->telefono ='null';
         $configuracion->save();
 
+        /* portada */
+        $portada = new portada();
+        $portada->titulo = null;
+        $portada->url = null;
+        $portada->save();
+        /* conoce */
+        $conoce = new conoce();
+        $conoce->texto = null ;
+        $conoce->save();
+
+        /* modelo */
+        $modelo = new modelo();
+        $modelo->texto = null;
+        $modelo->save();
+        
         /*  
            $table->increments('id');
             $table->string('nombre')->nullable();

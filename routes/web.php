@@ -24,5 +24,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('portada',['as'=>'portada',
 'uses'=>'HomeController@portada']);
 
-Route::get('portada/update/{id}',['as'=>'portada.update',
+Route::PUT('portada/update/{id}',['as'=>'portada.update',
 'uses'=>'HomeController@portadaUpdate']);
+
+
+Route::resource('edit_modelo','ModeloController');
+
+
+Route::resource('horarios','HorarioController');

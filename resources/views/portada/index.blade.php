@@ -9,8 +9,8 @@
     <div class="card-body">
         <form  role="form" method="POST" enctype="multipart/form-data" action="{{ route('portada.update',1) }}">
 					  	
+          <input name="_method" type="hidden" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            {{ method_field('PUT') }}
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                   <button type="submit" class="btn  btn-primary">
@@ -21,13 +21,15 @@
                                                       </button-->
                 </div>
               </div>
-
+              <div class="text-center">
+              <img src="{{asset($portada->url)}}" class="rounded" width="200" alt="no encontrado">
+              </div>
               <div class="form-group">
                 <div class="input-group-prepend">
                   <label class="col-md-4 control-label">Foto de portada:</label>
                   </div>
                   <div class="col-md-8">
-                  <input type="file" id="url_imagen"  class="form-control" name="url_imagen"   >
+                  <input type="file" id="url_imagen"  class="form-control" name="url_imagen"  >
                   </div>
                 </div> 
               
