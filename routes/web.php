@@ -14,6 +14,7 @@
 Route::get('/','InicioController@index');
 Route::get('/conoce','InicioController@conoce');
 Route::get('/modelo','InicioController@modelo');
+Route::get('/publicaciones','InicioController@publicaciones');
 
 Auth::routes();
 
@@ -32,3 +33,13 @@ Route::resource('edit_modelo','ModeloController');
 
 
 Route::resource('horarios','HorarioController');
+
+/* rutas de areas de la pestaña conoce tu escuela */
+
+Route::resource('areas','ConoceController');
+
+/* mis publicaciones  */
+
+Route::resource('mispublicaciones','MispublicacionesController');
+
+Route::GET('publicacion/{id}','InicioController@publicacion');

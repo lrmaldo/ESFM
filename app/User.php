@@ -44,6 +44,9 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function publicacion(){
+        return $this->hasOne('App\publicaciones','id');
+    }
 
     /* autorizacion de roles */
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\modelo;
 use Illuminate\Http\Request;
 
 class ModeloController extends Controller
@@ -13,7 +14,8 @@ class ModeloController extends Controller
      */
     public function index()
     {
-        //
+        $modelo = modelo::find(1);
+       return view('modelo.index',compact('modelo'));
     }
 
     /**
@@ -68,7 +70,10 @@ class ModeloController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $modelo = modelo::find(1);
+        $modelo->texto= $request->editor1;
+        $modelo->save();
+        return redirect('edit_modelo')->with('info','Datos actualizados');
     }
 
     /**

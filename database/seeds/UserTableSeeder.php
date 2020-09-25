@@ -46,10 +46,8 @@ class UserTableSeeder extends Seeder
         $portada->titulo = null;
         $portada->url = null;
         $portada->save();
-        /* conoce */
-        $conoce = new conoce();
-        $conoce->texto = null ;
-        $conoce->save();
+       
+       
 
         /* modelo */
         $modelo = new modelo();

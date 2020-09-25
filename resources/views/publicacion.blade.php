@@ -4,13 +4,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Escuela Secundaria Francisco de Montejo" />
+    <meta name="description" content="{{$publicacion->titulo}}" />
         <meta name="author" content="Ing. Leonardo Maldonado López" />
-        <title>ESFM</title>
+    <title>ESFM {{$publicacion->titulo}}</title>
 
-        <!-- Fonts -->
-       <!--  <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"> -->
-
+      
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -19,8 +17,7 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <!-- Styles -->
+        <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
       
     </head>
     <body id="page-top">
@@ -43,8 +40,8 @@
                                  Modelo Educativo
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="/modelo#curriculum">Currículum </a>
-                                  <a class="dropdown-item" href="/modelo#horarios">Horarios</a>
+                                    <a class="dropdown-item" href="/modelo#curriculum">Currículum </a>
+                                    <a class="dropdown-item" href="/modelo#horarios">Horarios</a>
                                  {{--  <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="#">Something else here</a> --}}
                                 </div>
@@ -70,42 +67,44 @@
         </nav>
         <!-- Masthead-->
         
-    
-        <!-- Portfolio Grid-->
-        <section class="page-section bg-light" id="portfolio">
-            <div class="container">
+        <section class="page-section" id="publicaciones">
+            <div class="col-md-8" style="float:none;margin:auto;">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Conoce tu Escuela</h2>
-                    {{-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> --}}
+                  
+                    <h1 class="mt-4 mb-3">{{$publicacion->titulo}}
+                        <small>por 
+                        <a href="#">{{$publicacion->usuario->name}}</a>
+                        </small>
+                      </h1>
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                        <a href="/publicaciones">Publicaciones</a>
+                        </li>
+                        <li class="breadcrumb-item active">{{$publicacion->titulo}}</li>
+                      </ol>
+            
+                      <div class="col-lg-8" style="float:none;margin:auto;">
+            
+                        <!-- Preview Image -->
+                        <img class="mx-auto rounded " width="400" src="{{asset($publicacion->foto_portada)}}" alt="">
+                
+                        <hr>
+                
+                        <!-- Date/Time -->
+                        <p>Publicado el {{date_format($publicacion->created_at,'d/m/Y h:i:s A')}}</p> 
+                
+                        <hr>
+                        <p>{!!$publicacion->descripcion!!}</p>
+            
+                      </div>
+          
                 </div>
-                <div class="row">
-                    @foreach ($areas as $item)
-                        
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#Modal{{$item->id}}">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="{{$item->url_imagen}}" alt="" />
-                            </a>
-                            <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">{{$item->titulo}}</div>
-                                {{-- <div class="portfolio-caption-subheading text-muted">Illustration</div> --}}
-                            </div>
-                        </div>
-                    </div>
-                    @include('modal.modal_conoce')
-                    @endforeach
-                </div>
+              
             </div>
         </section>
+      
        
        
-        
-
-     
-
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
@@ -133,37 +132,12 @@
         <script src="assets/mail/jqBootstrapValidation.js"></script>
         <script src="assets/mail/contact_me.js"></script>
         <!-- Core theme JS-->
-        <script src="js/script_sin_header.js"></script>
+        {{-- <script src="js/scripts.js"></script> --}}
 
 
 
 
 
-      <!--   <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div> -->
+    
     </body>
 </html>

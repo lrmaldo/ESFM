@@ -15,7 +15,9 @@ class CreateConocesTable extends Migration
     {
         Schema::create('conoce', function (Blueprint $table) {
             $table->increments('id')->comment('conoce a tu escuela');
-            $table->text('texto')->nullable();
+            $table->string('titulo')->nullable();
+            $table->string('url_imagen')->nullable();
+            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
     }
