@@ -20,106 +20,12 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-        <!-- Styles -->
-       <!--  <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style> -->
+     
     </head>
     <body id="page-top">
 
 
-     <!-- Navigation-->
-     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="/#page-top">ESFM</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ml-1"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#services">Acerca</a></li>
-                            
-                              <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle js-scroll-trigger" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 Modelo Educativo
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/modelo#curriculum">Currículum </a>
-                                    <a class="dropdown-item" href="/modelo#horarios">Horarios</a>
-                                 {{--  <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="#">Something else here</a> --}}
-                                </div>
-                              </li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/conoce">Conoce tu escuela</a></li>
-                      
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Equipo</a></li>
-                       
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle js-scroll-trigger" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             Noticias
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="#">Publicaciones</a>
-                              <a class="dropdown-item" href="#">Eventos</a>
-                              
-                            </div>
-                          </li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contacto</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Masthead-->
+    @include('nav')
         
         <section class="page-section" id="curriculum">
             <div class="container">

@@ -17,7 +17,7 @@ class CreateEventosTable extends Migration
             $table->increments('id');
             $table->text('titulo');
             $table->text('descripcion');
-            $table->string('fecha');
+            $table->string('fecha')->comment('fecha del evento')->nullable();
             $table->string('foto_portada')->nullable();
             $table->timestamps();
         });

@@ -15,6 +15,7 @@ Route::get('/','InicioController@index');
 Route::get('/conoce','InicioController@conoce');
 Route::get('/modelo','InicioController@modelo');
 Route::get('/publicaciones','InicioController@publicaciones');
+Route::get('/eventos','InicioController@eventos');
 
 Auth::routes();
 
@@ -41,5 +42,8 @@ Route::resource('areas','ConoceController');
 /* mis publicaciones  */
 
 Route::resource('mispublicaciones','MispublicacionesController');
+
+/* miseventos */
+Route::resource('miseventos','EventosController');
 
 Route::GET('publicacion/{id}','InicioController@publicacion');
