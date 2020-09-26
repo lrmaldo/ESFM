@@ -30,7 +30,7 @@
     @include('nav')
     <!-- Masthead-->
 
-    <section class="page-section" id="publicaciones">
+   {{--  <section class="page-section" id="publicaciones">
         <div class="col-md-8" style="float:none;margin:auto;">
             <div class="text-center">
                 <!-- Project One -->
@@ -61,7 +61,37 @@
             </div>
 
         </div>
-    </section>
+    </section> --}}
+
+    <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+      <small>fff</small>
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+      <a href="{{url('/')}}">Inicio</a>
+      </li>
+    <li class="breadcrumb-item active">{{$evento->titulo}}</li>
+    </ol>
+    <div class="row">
+
+        <div class="col-md-8">
+          <img class="img-fluid" src="{{asset($evento->foto_portada)}}" alt="">
+        </div>
+  
+        <div class="col-md-4">
+          <h3 class="my-3">{{$evento->titulo}}</h3>
+          <p>{!!$evento->descripcion!!}</p>
+          
+        </div>
+  
+      </div>
+    
+  </div>
 
 
 

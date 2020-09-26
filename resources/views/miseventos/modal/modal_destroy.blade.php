@@ -10,12 +10,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ¿Esta seguro que desea eliminar esta publicación?
+                    ¿Esta seguro que desea eliminar este evento?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <form id="formdestroy" class="form-horizontal" role="form" method="post"
-                        action="{{ route('mispublicaciones.destroy', $item->id) }}">
+                        action="{{ route('miseventos.destroy', $item->id) }}">
                         <input type="hidden" name="_method" value="DELETE">
                        
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

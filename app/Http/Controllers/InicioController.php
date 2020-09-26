@@ -48,4 +48,15 @@ class InicioController extends Controller
         $publicacion = publicaciones::where('id',$id)->first();
         return view('publicacion',compact('publicacion'));
     }
+
+    /* evento */
+      /* post  */
+      public function evento($id){
+        if(is_null(evento::find($id))){
+            return "no se encontro el evento";
+        }
+
+        $evento = evento::where('id',$id)->first();
+        return view('evento',compact('evento'));
+    }
 }

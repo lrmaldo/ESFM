@@ -16,7 +16,7 @@ class EventosController extends Controller
     public function index()
     {
         $eventos = evento::all();
-        return view('miseventos.index',compact('eventos'));
+        return view('miseventos.index', compact('eventos'));
     }
 
     /**
@@ -26,7 +26,7 @@ class EventosController extends Controller
      */
     public function create()
     {
-        return view('misenvetos.create');
+        return view('miseventos.create');
     }
 
     /**
@@ -37,7 +37,26 @@ class EventosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$id_user = Auth::user()->id;
+        if ($request->hasFile('url_imagen')) {
+
+            $img = $request->file('url_imagen');
+            $nombre_foto = "evento-" . time() . "." . $img->getClientOriginalExtension();
+            $destinoPath = public_path('/imagenes/eventos/');
+            $img->move($destinoPath, $nombre_foto);
+
+
+            /* guardar url en la base de datos */
+            $evento = new evento();
+            $evento->titulo = $request->titulo;
+            $evento->descripcion = $request->editor1;
+            $evento->foto_portada = 'imagenes/eventos/' . $nombre_foto;
+            
+            $evento->save();
+            return redirect('miseventos')->with('success', "Horario creado");
+        } else {
+            return redirect('miseventos')->with('error', 'No has seleccionado una imagen');
+        }
     }
 
     /**
@@ -59,7 +78,9 @@ class EventosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $evento = evento::find($id);
+
+        return view('miseventos.edit', compact('evento'));
     }
 
     /**
@@ -71,7 +92,38 @@ class EventosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+        $evento = evento::find($id);
+        if ($request->hasFile('url_imagen')) {
+            if ($evento->foto_portada == null) {
+                $checar_img = null;
+            } else {
+                $checar_img = $evento->foto_portada;
+            }
+            //$checar_img = str_replace($request->root(),'',$portada->url_imagen);
+            if (file_exists($checar_img)) {
+                unlink($checar_img);
+            }
+            $img = $request->file('url_imagen');
+            $nombre_foto = "publicacion-".time().".".$img->getClientOriginalExtension();
+            $destinoPath = public_path('/imagenes/eventos/');
+            $img->move($destinoPath, $nombre_foto);
+
+
+            /* guardar url en la base de datos */
+
+            $evento->titulo = $request['titulo'];
+            $evento->descripcion = $request['editor1'];
+            $evento->foto_portada = 'imagenes/eventos/'.$nombre_foto;
+            $evento->save();
+            return redirect('miseventos')->with('info', "publicacion Actualizado");
+        } else {
+            $evento->titulo = $request['titulo'];
+            $evento->descripcion = $request['editor1'];
+            $evento->save();
+
+            return redirect('miseventos')->with('info', 'publicacion actualizados');
+        }
     }
 
     /**
@@ -82,6 +134,20 @@ class EventosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $evento = evento::find($id);
+        if($evento->foto_portada==null){
+            $checar_img = null;
+        }else{
+            $checar_img =$evento->foto_portada;
+        }
+        //$checar_img = str_replace($request->root(),'',$portada->url_imagen);
+        if(file_exists($checar_img)){
+            unlink($checar_img);
+            evento::destroy($id);
+        }else{
+            evento::destroy($id);
+        }
+
+        return  redirect('miseventos')->with('success','Se elimino correctamente');
     }
 }

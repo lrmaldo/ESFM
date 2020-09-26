@@ -3,11 +3,11 @@
 @section('content')
 <div class="card card-header-actions">
     <div class="card-header">
-      <h2>Mi publicación</h2>
+      <h2>Mi evento</h2>
      
     </div>
     <div class="card-body">
-        <form  role="form" method="POST" enctype="multipart/form-data" action="{{ route('mispublicaciones.store') }}">
+        <form  role="form" method="POST" enctype="multipart/form-data" action="{{ route('miseventos.store') }}">
 					  	
         {{--   <input name="_method" type="hidden" value="PUT"> --}}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

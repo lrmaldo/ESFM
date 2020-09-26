@@ -3,11 +3,11 @@
 @section('content')
 <div class="card card-header-actions">
     <div class="card-header">
-      <h2>Mi publicación</h2>
+      <h2>Mi evento</h2>
      
     </div>
     <div class="card-body">
-        <form  role="form" method="POST" enctype="multipart/form-data" action="{{ route('mispublicaciones.update',$publicacion->id) }}">
+        <form  role="form" method="POST" enctype="multipart/form-data" action="{{ route('miseventos.update',$evento->id) }}">
 					  	
           <input name="_method" type="hidden" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -35,7 +35,7 @@
                     <label class="col-md-12 control-label">Título:*</label>
                     </div>
                     <div class="col-md-12">
-                    <input type="text" id ="titulo" class="form-control" name="titulo" value="{{$publicacion->titulo}}"  placeholder="Escribe un titulo" required>
+                    <input type="text" id ="titulo" class="form-control" name="titulo" value="{{$evento->titulo}}"  placeholder="Escribe un titulo" required>
                         
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <label class="col-md-12 control-label">Descripción:</label>
                     </div>
                     <div class="col-md-12">
-                    <textarea name="editor1" id="editor1" rows="20" cols="80">{!!$publicacion->descripcion!!}</textarea>
+                    <textarea name="editor1" id="editor1" rows="20" cols="80">{!!$evento->descripcion!!}</textarea>
                     </div>
                   </div> 
              

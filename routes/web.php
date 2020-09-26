@@ -47,3 +47,4 @@ Route::resource('mispublicaciones','MispublicacionesController');
 Route::resource('miseventos','EventosController');
 
 Route::GET('publicacion/{id}','InicioController@publicacion');
+Route::GET('evento/{id}','InicioController@evento');
