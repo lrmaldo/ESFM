@@ -11,11 +11,14 @@
 |
 */
 
+
+
 Route::get('/','InicioController@index');
 Route::get('/conoce','InicioController@conoce');
 Route::get('/modelo','InicioController@modelo');
 Route::get('/publicaciones','InicioController@publicaciones');
 Route::get('/eventos','InicioController@eventos');
+Route::get('/galeria','InicioController@galeria');
 
 Auth::routes();
 
@@ -45,6 +48,9 @@ Route::resource('mispublicaciones','MispublicacionesController');
 
 /* miseventos */
 Route::resource('miseventos','EventosController');
+
+/* galerias */
+Route::resource('migaleria','GaleriaController');
 
 Route::GET('publicacion/{id}','InicioController@publicacion');
 Route::GET('evento/{id}','InicioController@evento');
