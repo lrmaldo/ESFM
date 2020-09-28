@@ -55,9 +55,12 @@
                             </div>
                         </div>
                     </div>
+                    
                     @include('modal.modal_conoce')
+
                     @endforeach
                 </div>
+                {!! $galerias->links('vendor.pagination.bootstrap-4'); !!}
             </div>
         </section>
        

@@ -66,10 +66,10 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                     Dashboard
                                 </a>
-                                <div class="sb-sidenav-menu-heading">Interface</div>
+                                <div class="sb-sidenav-menu-heading"></div>
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                    Fotos
+                                    Herramientas
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -77,9 +77,12 @@
                                         <a class="nav-link" href="{{route('portada')}}">Portada</a>
                                         <a class="nav-link" href="{{route('horarios.index')}}">Horarios</a>
                                         <a class="nav-link" href="{{route('areas.index')}}">Conoce tu escuela</a>
+                                        <a class="nav-link" href="{{url('migaleria')}}">Galeria</a>
+                                        <a class="nav-link" href="{{route('mispublicaciones.index')}}">Publicaciones</a>
+                                        <a class="nav-link" href="{{route('miseventos.index')}}">Eventos</a>
                                     </nav>
                                 </div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                               {{--  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                     Pages
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -118,7 +121,7 @@
                                 <a class="nav-link" href="tables.html">
                                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                     Tables
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                         <div class="sb-sidenav-footer">

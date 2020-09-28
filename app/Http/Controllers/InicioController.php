@@ -20,7 +20,7 @@ class InicioController extends Controller
     }
 
     public function conoce(){
-        $areas = conoce::all();
+        $areas = conoce::orderBy('id','desc')->paginate(8);
         return view('conoce',compact('areas'));
     }
     public function modelo(){
@@ -30,12 +30,12 @@ class InicioController extends Controller
     }
 
     public function publicaciones(){
-        $publicaciones = publicaciones::all();
+        $publicaciones = publicaciones::orderBy('id','desc')->paginate(8);
         return view('publicaciones',compact('publicaciones'));
     }
 
     public function eventos(){
-        $eventos = evento::all();
+        $eventos = evento::orderBy('id','desc')->paginate(8);
         return view('eventos',compact('eventos'));
     }
 
@@ -61,7 +61,7 @@ class InicioController extends Controller
     }
 
     public function galeria(){
-        $galerias = \App\galeria::all();
+        $galerias = \App\galeria::orderBy('id','desc')->paginate(8);
         return view('galeria',compact('galerias'));
     }
 }

@@ -22,7 +22,7 @@
                         </div>
                       </li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/conoce">Conoce tu escuela</a></li>
-              
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/galeria">Galeria</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#team">Equipo</a></li>
                
                 <li class="nav-item dropdown">
