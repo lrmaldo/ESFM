@@ -56,51 +56,25 @@ Route::GET('perfil/{id}','InicioController@perfil');
 
 
 
+Route::resource('edit_modelo','ModeloController');
 
+
+Route::resource('horarios','HorarioController');
+
+/* ruta portada */
+Route::get('portada',['as'=>'portada',
+'uses'=>'HomeController@portada']);
+
+Route::PUT('portada/update/{id}',['as'=>'portada.update',
+'uses'=>'HomeController@portadaUpdate']);
+
+
+/* rutas de configuracion */
+Route::get('/configuracion','HomeController@configuracion');
+Route::PUT('configuracion/update/{id}',['as'=>'configuracion.update',
+'uses'=>'HomeController@update_configuracion']);
 
 /* rol de usuario */
 
-Route::group(['middleware' => 'role:admin'], function () {
-
-    Route::resource('edit_modelo','ModeloController');
 
 
-    Route::resource('horarios','HorarioController');
-
-/* ruta portada */
-Route::get('portada',['as'=>'portada',
-'uses'=>'HomeController@portada']);
-
-Route::PUT('portada/update/{id}',['as'=>'portada.update',
-'uses'=>'HomeController@portadaUpdate']);
-
-
-    /* rutas de configuracion */
-Route::get('/configuracion','HomeController@configuracion');
-Route::PUT('configuracion/update/{id}',['as'=>'configuracion.update',
-'uses'=>'HomeController@update_configuracion']);
-});
-
-
-/* rol de director */
-
-Route::group(['middleware' => 'role:director'], function () {
-
-    Route::resource('edit_modelo','ModeloController');
-
-
-    Route::resource('horarios','HorarioController');
-
-/* ruta portada */
-Route::get('portada',['as'=>'portada',
-'uses'=>'HomeController@portada']);
-
-Route::PUT('portada/update/{id}',['as'=>'portada.update',
-'uses'=>'HomeController@portadaUpdate']);
-
-
-    /* rutas de configuracion */
-Route::get('/configuracion','HomeController@configuracion');
-Route::PUT('configuracion/update/{id}',['as'=>'configuracion.update',
-'uses'=>'HomeController@update_configuracion']);
-});
