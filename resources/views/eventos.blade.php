@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Eventos- ESFM" />
     <meta name="author" content="Ing. Leonardo Maldonado López" />
+    <link rel="icon" type="image/x-icon" href="img/logo_icon.ico" />
     <title>ESFM </title>
 
 
@@ -56,7 +57,7 @@
                     
                 @endforeach
                 
-
+                {!! $eventos->links('vendor.pagination.bootstrap-4'); !!}
 
             </div>
 
@@ -66,22 +67,7 @@
 
 
     <!-- Footer-->
-    <footer class="footer py-4">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-4 text-lg-left">Copyright © ESFM 2020</div>
-                <div class="col-lg-4 my-3 my-lg-0">
-                    <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <div class="col-lg-4 text-lg-right">
-                    <a class="mr-3" href="#!">Privacy Policy</a>
-                    <a href="#!">Terms of Use</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('footer')
 
     <!-- Bootstrap core JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

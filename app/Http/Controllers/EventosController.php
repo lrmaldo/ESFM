@@ -13,6 +13,11 @@ class EventosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $eventos = evento::all();
@@ -53,7 +58,7 @@ class EventosController extends Controller
             $evento->foto_portada = 'imagenes/eventos/' . $nombre_foto;
             
             $evento->save();
-            return redirect('miseventos')->with('success', "Horario creado");
+            return redirect('miseventos')->with('success', "Evento creado correctamente");
         } else {
             return redirect('miseventos')->with('error', 'No has seleccionado una imagen');
         }
@@ -116,13 +121,13 @@ class EventosController extends Controller
             $evento->descripcion = $request['editor1'];
             $evento->foto_portada = 'imagenes/eventos/'.$nombre_foto;
             $evento->save();
-            return redirect('miseventos')->with('info', "publicacion Actualizado");
+            return redirect('miseventos')->with('info', "Evento Actualizado");
         } else {
             $evento->titulo = $request['titulo'];
             $evento->descripcion = $request['editor1'];
             $evento->save();
 
-            return redirect('miseventos')->with('info', 'publicacion actualizados');
+            return redirect('miseventos')->with('info', 'Evento actualizado');
         }
     }
 

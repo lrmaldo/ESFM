@@ -17,27 +17,27 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
+                                    <div class="card-body">Configuración</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="#">Detalles</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
+                                    <div class="card-body">Portada</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="/portada">Detalles</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
+                                    <div class="card-body">Horarios</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="/horarios">Detalles</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -47,6 +47,8 @@
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
                                 Tabla Usuarios
+                                <a  href="{{route('user.create')}}" class="btn btn-primary  text-white"> <i
+                                    class="fa fa-user text-white"></i> Crear usuario</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -77,9 +79,13 @@
                                             <tr>
                                             <td>{{$item->name}}</td>
                                             <td>{{$item->email}}</td>
-                                            <td>{{$item->telefono}}</td>
+                                            <td style="text-align: center">@if ($item->activar == 1)
+                                                <span class="badge badge-pill badge-success">Activo</span>
+                                              @else
+                                              <span class="badge badge-pill badge-danger">No activo</span>
+                                              @endif</td>
                                             
-                                                <td>docente</td>
+                                            <td>{{$item->cargo}}</td>
                                                 <td>  <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-edit"
                                                         aria-hidden="true"></i></a>
                                                 <button type="button" class="btn btn-danger" data-toggle="modal"

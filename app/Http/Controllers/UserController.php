@@ -13,6 +13,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -36,6 +41,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$request->input('activar')){
+            $activo = 0;
+        }
+        else{
+            $activo = 1;
+        }
+
         $role_user = Role::where('name', 'docente')->first();
        
         $user = new User();
@@ -44,13 +56,15 @@ class UserController extends Controller
         $user->password = bcrypt($request->contrasenia);
         $user->telefono = $request->telefono;
         $user->descripcion= $request->descripcion;
+        $user->activar = $activo;
+        $user->cargo = $request->puesto;
         $user->facebook = $request->facebook;
         if ($request->hasFile('url_imagen')) {
             $image = $request->file('url_imagen');
             $name = 'fotoDocente'.time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/imagenes/docente/'.$request->name."/");
+            $destinationPath = public_path('/imagenes/docente/'.$request->email."/");
             $image->move($destinationPath, $name);
-            $user->url_imagen = $request->root().'/imagenes/docente/'.$request->name."/".$name;
+            $user->url_imagen = $request->root().'/imagenes/docente/'.$request->email."/".$name;
         }
         $user->save();
         $user->roles()->attach($role_user);
@@ -61,7 +75,7 @@ class UserController extends Controller
             $table->string('telefono')->nullable();
             $table->text('facebook')->nullable();
             $table->string('url_imagen')->nullable(); */
-        return redirect('home');
+        return redirect('home')->with('success','Fue creado correctamente');
     }
 
     /**
@@ -96,6 +110,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!$request->input('activar')){
+            $activo = 0;
+        }
+        else{
+            $activo = 1;
+        }
+
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
@@ -103,18 +124,29 @@ class UserController extends Controller
         if($request->contrasenia){
             $user->password = bcrypt($request->contrasenia);
         }
+        $user->activar =$activo;/* activar usuario */
         $user->telefono = $request->telefono;
         $user->descripcion= $request->descripcion;
+        $user->cargo = $request->puesto;
         $user->facebook = $request->facebook;
         if ($request->hasFile('url_imagen')) {
+            if ($user->url_imagen == null) {
+                $checar_img = null;
+            } else {
+                $checar_img = $user->url_imagen;
+            }
+            //$checar_img = str_replace($request->root(),'',$portada->url_imagen);
+            if (file_exists($checar_img)) {
+                unlink($checar_img);
+            }
             $image = $request->file('url_imagen');
             $name = 'fotoDocente'.time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/imagenes/docente/'.$request->name."/");
+            $destinationPath = public_path('/imagenes/docente/'.$user->email."/");
             $image->move($destinationPath, $name);
-            $user->url_imagen = $request->root().'/imagenes/docente/'.$request->name."/".$name;
+            $user->url_imagen = 'imagenes/docente/'.$user->email."/".$name;
         }
         $user->save();
-       return redirect('home');
+       return redirect('home')->with('info','Datos actualizados correctamente');
     }
 
     /**
@@ -126,6 +158,48 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect("home");
+        return redirect("home")->with('success','Se ha eliminado correctamente');
+    }
+
+
+    /* editar perfil  */
+
+    public function edit_perfil(){
+        return view('perfiles.edit_perfil');
+    }
+
+    public function update_perfil(Request $request, $id)
+    {
+        $user = User::find($id);
+        
+
+        if($request->contrasenia){
+            $user->password = bcrypt($request->contrasenia);
+        }
+        $user->telefono = $request->telefono;
+        $user->descripcion= $request->descripcion;
+        $user->facebook = $request->facebook;
+        if ($request->hasFile('url_imagen')) {
+
+            if ($user->url_imagen == null) {
+                $checar_img = null;
+            } else {
+                $checar_img = $user->url_imagen;
+            }
+            //$checar_img = str_replace($request->root(),'',$portada->url_imagen);
+            if (file_exists($checar_img)) {
+                unlink($checar_img);
+            }
+
+
+
+            $image = $request->file('url_imagen');
+            $name = 'fotoDocente'.time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/imagenes/docente/'.$user->email."/");
+            $image->move($destinationPath, $name);
+            $user->url_imagen = 'imagenes/docente/'.$user->email."/".$name;
+        }
+        $user->save();
+       return redirect('home')->with('info','Datos actualizados correctamente');
     }
 }

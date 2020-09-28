@@ -25,18 +25,15 @@ Auth::routes();
 Route::resource('user','UserController');
 Route::get('/home', 'HomeController@index')->name('home');
 
-/* ruta portada */
-Route::get('portada',['as'=>'portada',
-'uses'=>'HomeController@portada']);
-
-Route::PUT('portada/update/{id}',['as'=>'portada.update',
-'uses'=>'HomeController@portadaUpdate']);
+Route::get('/edit_perfil','UserController@edit_perfil');
+Route::PUT('perfil/update/{id}',['as'=>'edit_perfil.update',
+'uses'=>'UserController@update_perfil']);
 
 
-Route::resource('edit_modelo','ModeloController');
 
 
-Route::resource('horarios','HorarioController');
+
+
 
 /* rutas de areas de la pestaña conoce tu escuela */
 
@@ -54,3 +51,56 @@ Route::resource('migaleria','GaleriaController');
 
 Route::GET('publicacion/{id}','InicioController@publicacion');
 Route::GET('evento/{id}','InicioController@evento');
+/* ruta de perfil docente */
+Route::GET('perfil/{id}','InicioController@perfil');
+
+
+
+
+
+/* rol de usuario */
+
+Route::group(['middleware' => 'role:admin'], function () {
+
+    Route::resource('edit_modelo','ModeloController');
+
+
+    Route::resource('horarios','HorarioController');
+
+/* ruta portada */
+Route::get('portada',['as'=>'portada',
+'uses'=>'HomeController@portada']);
+
+Route::PUT('portada/update/{id}',['as'=>'portada.update',
+'uses'=>'HomeController@portadaUpdate']);
+
+
+    /* rutas de configuracion */
+Route::get('/configuracion','HomeController@configuracion');
+Route::PUT('configuracion/update/{id}',['as'=>'configuracion.update',
+'uses'=>'HomeController@update_configuracion']);
+});
+
+
+/* rol de director */
+
+Route::group(['middleware' => 'role:director'], function () {
+
+    Route::resource('edit_modelo','ModeloController');
+
+
+    Route::resource('horarios','HorarioController');
+
+/* ruta portada */
+Route::get('portada',['as'=>'portada',
+'uses'=>'HomeController@portada']);
+
+Route::PUT('portada/update/{id}',['as'=>'portada.update',
+'uses'=>'HomeController@portadaUpdate']);
+
+
+    /* rutas de configuracion */
+Route::get('/configuracion','HomeController@configuracion');
+Route::PUT('configuracion/update/{id}',['as'=>'configuracion.update',
+'uses'=>'HomeController@update_configuracion']);
+});

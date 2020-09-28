@@ -10,14 +10,15 @@
         <link href="{{asset('dash/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-danger">
+    <body style=" background-size:cover; background-repeat:no-repeat; background-position:center;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(116, 4, 4, 0.5) 100%),url('{{asset(App\portada::find(1)->url)}}')">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5 text-white" style="background-color: rgba(0,0,0,0.6);">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Reset Password</h3></div>
                                     <div class="card-body">
                                         @if (session('status'))
@@ -62,9 +63,9 @@
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; ESFM  <script> document.write(new Date().getFullYear())</script></div>
                             <div>
-                                <a href="#">Privacy Policy</a>
+                                <a href="/politica">Políticas de privacidad</a>
                                 &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                                <a href="/terminos">Terminos &amp; Condiciones</a>
                             </div>
                         </div>
                     </div>

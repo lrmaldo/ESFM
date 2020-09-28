@@ -21,58 +21,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <!-- Styles -->
-       <!--  <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style> -->
+     
     </head>
     <body id="page-top">
 
@@ -86,7 +35,7 @@
                 <div class="text-center">
                    @foreach ($publicaciones as $item)
                    <div class="card mb-4">
-                    <img class="mx-auto rounded " width="300" src="{{$item->foto_portada}}"  height="600" alt="Card image cap">
+                    <img class="mx-auto rounded " width="450" height="400" src="{{$item->foto_portada}}"  height="600" alt="Card image cap">
                     <div class="card-body">
                     <h2 class="card-title">{{$item->titulo}}</h2>
                     <p class="card-text">{!!substr($item->descripcion,0,50) !!}...</p>
@@ -100,7 +49,7 @@
                    @endforeach
                      <!-- Blog Post -->
        
-          
+                     {!! $publicaciones->links('vendor.pagination.bootstrap-4'); !!}
                 </div>
               
             </div>
@@ -108,23 +57,7 @@
       
        
        
-        <!-- Footer-->
-        <footer class="footer py-4">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © ESFM 2020</div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="col-lg-4 text-lg-right">
-                        <a class="mr-3" href="#!">Privacy Policy</a>
-                        <a href="#!">Terms of Use</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        @include('footer')
         
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

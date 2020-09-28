@@ -7,6 +7,7 @@
         <meta name="description" content="Escuela Secundaria Francisco de Montejo" />
         <meta name="author" content="Ing. Leonardo Maldonado López" />
         <title>ESFM</title>
+        <link rel="icon" type="image/x-icon" href="img/logo_icon.ico" />
 
         <!-- Fonts -->
        <!--  <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"> -->
@@ -21,58 +22,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <!-- Styles -->
-       <!--  <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style> -->
+      
     </head>
     <body id="page-top">
 
@@ -121,7 +71,7 @@
         </nav>
         <!-- Masthead-->
         <header class="masthead" style="
-        background-image: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(116, 4, 4, 0.5) 100%),url('img/portada.jpg')">
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(116, 4, 4, 0.5) 100%),url('{{asset(App\portada::find(1)->url)}}')">
             <div class="container">
                 <div class="masthead-subheading">Bienvenido</div>
                 <div class="masthead-heading text-uppercase" style="font-size:50px">Escuela Secundaria Francisco de Montejo</div>
@@ -163,18 +113,69 @@
                     <h2 class="section-heading text-uppercase">Equipo</h2>
                     <h3 class="section-subheading text-muted">Nuestro personal Docente</h3>
                 </div>
+                {{-- director --}}
+                        <div class="text-centet">
+                            @foreach ($directores as $item)
+                            <div class="col-lg-12">
+                                <div class="team-member">
+                                <a href="perfil/{{$item->id}}">
+                                    <img class="mx-auto rounded-circle" src="{{$item->url_imagen!=null ?asset($item->url_imagen): asset('img/logo.jpg')}}" alt="" />
+                                </a>
+                                <a href="perfil/{{$item->id}}">
+                                    <h4>{{$item->name}}</h4>
+        
+                                </a>
+                                
+                                <p class="text-muted">{{$item->cargo}}</p>
+                                    {{-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a> --}}
+                                    @if ($item->facebook)
+                                   <a class="btn btn-dark btn-social mx-2" href="{{$item->facebook}}"><i class="fab fa-facebook-f"></i></a>
+                                        
+                                    @endif
+                                    @if ($item->telefono)
+                                    <a class="btn btn-dark btn-social mx-2" href="tel:{{$item->telefono}}"><i class="fa fa-phone"></i></a>
+                                        
+                                    @endif
+                                    {{-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a> --}}
+                                </div>
+                            </div>
+                                
+                            @endforeach
+                        </div>
+
+                        {{-- docentes --}}
                 <div class="row">
+                   {{--  @php
+                        echo $docentes;
+                    @endphp --}}
+                    @foreach ($docentes as $item)
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="" />
-                            <h4>Kay Garland</h4>
-                            <p class="text-muted">Lead Designer</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="perfil/{{$item->id}}">
+                            <img class="mx-auto rounded-circle" src="{{$item->url_imagen!=null ?asset($item->url_imagen): asset('img/logo.jpg')}}" alt="" />
+                        </a>
+                        <a href="perfil/{{$item->id}}">
+                            <h4>{{$item->name}}</h4>
+                        </a>
+                        
+                        <p class="text-muted">{{$item->cargo}}</p>
+                            {{-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a> --}}
+                            @if ($item->facebook)
+                           <a class="btn btn-dark btn-social mx-2" href="{{$item->facebook}}"><i class="fab fa-facebook-f"></i></a>
+                                
+                            @endif
+                            @if ($item->telefono)
+                            <a class="btn btn-dark btn-social mx-2" href="tel:{{$item->telefono}}"><i class="fa fa-phone"></i></a> 
+                            @endif
+                            @if ($item->email)
+                            <a class="btn btn-dark btn-social mx-2" href="mailto:{{$item->email}}"><i class="fa fa-envelope"></i></a> 
+                            @endif
+                            {{-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a> --}}
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                        
+                    @endforeach
+                   {{--  <div class="col-lg-4">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="" />
                             <h4>Larry Parker</h4>
@@ -183,8 +184,8 @@
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
+                    </div> --}}
+                   {{--  <div class="col-lg-4">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="" />
                             <h4>Diana Petersen</h4>
@@ -193,7 +194,7 @@
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 {{-- <div class="row">
                     <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
@@ -202,59 +203,45 @@
         </section>
         
         <!-- Contact-->
-        <section class="page-section" id="contact">
+        <section class="page-section" style="
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(116, 4, 4, 0.5) 100%),url('{{asset(App\portada::find(1)->url)}}')" id="contact">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">Contacto</h2>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
                 <form id="contactForm" name="sentMessage" novalidate="novalidate">
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name." />
+                                <input class="form-control" id="name" type="text" placeholder="Nombre *" required="required" data-validation-required-message="Se requiere tu nombre." />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address." />
+                                <input class="form-control" id="email" type="email" placeholder="Email *" required="required" data-validation-required-message="Se requiere un correo" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group mb-md-0">
-                                <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number." />
+                                <input class="form-control" id="phone" type="tel" placeholder="Teléfono *" required="required" data-validation-required-message="Se requiere un teléfono ." />
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-group-textarea mb-md-0">
-                                <textarea class="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
+                                <textarea class="form-control" id="message" placeholder="Escribe tu mensaje *" required="required" data-validation-required-message="Se requiere un mensaje."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
                         <div id="success"></div>
-                        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Send Message</button>
+                        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Enviar mensaje</button>
                     </div>
                 </form>
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer py-4">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright ©  ESFM <script> document.write( new Date().getFullYear())</script></div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="col-lg-4 text-lg-right">
-                        <a class="mr-3" href="#!">Privacy Policy</a>
-                        <a href="#!">Terms of Use</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+      @include('footer')
         <!-- Portfolio Modals-->
         <!-- Modal 1-->
         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">

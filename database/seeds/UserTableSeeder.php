@@ -18,19 +18,31 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $role_user = Role::where('name', 'docente')->first();
-        $role_admin = Role::where('name', 'director')->first();
+        $role_admin = Role::where('name', 'admin')->first();
+        $role_direc = Role::where('name','director')->first();
         $user = new User();
         $user->name = 'User';
         $user->email = 'user@example.com';
+        $user->cargo = 'Docente de español';
         $user->password = bcrypt('secret');
         $user->save();
         $user->roles()->attach($role_user);
         $user = new User();
         $user->name = 'Admin';
-        $user->email = 'admin@example.com';
+        $user->email = 'lrmaldo@gmail.com';
         $user->password = bcrypt('secret');
         $user->save();
         $user->roles()->attach($role_admin);
+
+        $user = new User();
+        $user->name = 'Juan de Dios';
+        $user->email = 'JdD_CUV@hotmail.com';
+        $user->cargo = 'Director';
+        $user->password = bcrypt('secret');
+        $user->save();
+        $user->roles()->attach($role_direc);
+
+        /* JdD_CUV@hotmail.com  */
 
         $configuracion = new configuracion();
         $configuracion->nombre = 'null';
@@ -44,7 +56,7 @@ class UserTableSeeder extends Seeder
         /* portada */
         $portada = new portada();
         $portada->titulo = null;
-        $portada->url = null;
+        $portada->url = 'img/portada.jpg';
         $portada->save();
        
        

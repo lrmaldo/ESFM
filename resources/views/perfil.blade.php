@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="{{$publicacion->titulo}}" />
+    <meta name="description" content="{{$docente->name}}" />
         <meta name="author" content="Ing. Leonardo Maldonado López" />
-    <title>ESFM {{$publicacion->titulo}}</title>
-    <link rel="icon" type="image/x-icon" href="img/logo_icon.ico" />
+        <link rel="icon" type="image/x-icon" href="img/logo_icon.ico" />
+        <title>ESFM {{$docente->name}}</title>
 
       
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
@@ -32,30 +32,25 @@
             <div class="col-md-8" style="float:none;margin:auto;">
                 <div class="text-center">
                   
-                    <h1 class="mt-4 mb-3">{{$publicacion->titulo}}
-                        <small>por 
-                        <a href="../perfil/{{$publicacion->usuario->id}}">{{$publicacion->usuario->name}}</a>
-                        </small>
+                    <h1 class="mt-4 mb-3">Pérfil
+                        
                       </h1>
                      <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                        <a href="/publicaciones">Publicaciones</a>
+                        <a href="/">Inicio</a>
                         </li>
-                        <li class="breadcrumb-item active">{{$publicacion->titulo}}</li>
+                        <li class="breadcrumb-item active">{{$docente->name}}</li>
                       </ol>
             
                       <div class="col-lg-8" style="float:none;margin:auto;">
             
-                        <!-- Preview Image -->
-                        <img class="mx-auto rounded " width="400" src="{{asset($publicacion->foto_portada)}}" alt="">
-                
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="{{ $docente->url_imagen!=null ?asset($docente->url_imagen): asset('img/logo.jpg')}}" alt="" />
+                            <h4>{{$docente->name}}</h4>
+                        <p class="text-muted">{{$docente->cargo}}</p>
+                        </div>
                         <hr>
-                
-                        <!-- Date/Time -->
-                        <p>Publicado el {{date_format($publicacion->created_at,'d/m/Y h:i:s A')}}</p> 
-                
-                        <hr>
-                        <p>{!!$publicacion->descripcion!!}</p>
+                        <p>{!!$docente->descripcion!!}</p>
             
                       </div>
           
@@ -66,7 +61,6 @@
       
        
        
-        <!-- Footer-->
         @include('footer')
         
         <!-- Bootstrap core JS-->

@@ -13,6 +13,11 @@ class MispublicacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $publicaciones = publicaciones::where('id_usuario',Auth::user()->id)->get();
@@ -54,7 +59,7 @@ class MispublicacionesController extends Controller
             $post->foto_portada = 'imagenes/publicacion/'.$id_user."/".$nombre_foto;
             $post->id_usuario = $id_user;
             $post->save();
-            return redirect('mispublicaciones')->with('success',"Horario creado");
+            return redirect('mispublicaciones')->with('success',"Publicación creado correctamente");
         
     }else{
         return redirect('mispublicaciones')->with('error','No has seleccionado una imagen');

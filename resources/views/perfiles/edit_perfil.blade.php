@@ -1,6 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+  .mx-auto {
+    margin-left: auto !important;
+}
+.rounded-circle {
+    border-radius: 50% !important;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+    width: 14rem;
+    height: 14rem;
+    border: 0.5rem solid rgba(0, 0, 0, 0.1);
+}
+</style>
 <div class="card card-header-actions">
     <div class="card-header">
         Perfil
@@ -9,12 +24,12 @@
     <div class="card-body">
     
                     <center>
-                       
+                      <img class="mx-auto rounded-circle"  src="{{ Auth::user()->url_imagen!=null ?asset(Auth::user()->url_imagen): asset('img/logo.jpg')}}" alt="" />
                    
                     </center>
                     <hr>
                     <center>
-                    <form  role="form" method="POST" enctype="multipart/form-data" action="{{ route('user.update',$user->id) }}">
+                    <form  role="form" method="POST" enctype="multipart/form-data" action="{{ route('edit_perfil.update',Auth::user()->id) }}">
 					  	
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               {{ method_field('PUT') }}
@@ -28,21 +43,20 @@
                                                         </button-->
                   </div>
                 </div>
-                <div class="form-check">
-                  <div class="custom-control custom-checkbox ">
-                    <input type="checkbox" name="activar" id="activar" value="1"  class="form-check-input" {{ ($user->activar == 1 ? 'checked' : '') }} >
-                    
-                    <label class="form-check-label" for="customCheck">  <h3><strong>Activar</strong></h3> </label>
-
-                  </div>
-                </div>
-                
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <label class="col-md-4 control-label">Foto de perfil:</label>
+                    </div>
+                    <div class="col-md-8">
+                    <input type="file" id="url_imagen"  class="form-control" name="url_imagen"   >
+                    </div>
+                  </div> 
                 <div class="form-group">
                     <div class="input-group-prepend">
                     <label class="col-md-4 control-label">Nombre:*</label>
                     </div>
                     <div class="col-md-8">
-                    <input type="text" id ="name" class="form-control" name="name" value="{{$user->name}}" placeholder="Escribe el nombre del docente o administrativo" required>
+                    <input type="text" id ="name" class="form-control" name="name" value="{{Auth::user()->name}}" placeholder="Escribe el email del docente o administrativo" disabled>
                         
                     </div>
                 </div>
@@ -52,7 +66,7 @@
                     <label class="col-md-4 control-label">Email:*</label>
                     </div>
                     <div class="col-md-8">
-                    <input type="email" id ="email" class="form-control" name="email" value="{{$user->email}}" placeholder="Escribe el email valido de la tienda" required>
+                    <input type="email" id ="email" class="form-control" name="email" value="{{Auth::user()->email}}" placeholder="Escribe el email valido de la tienda" disabled>
                         
                     </div>
                 </div>
@@ -68,17 +82,7 @@
                       </div>
                   </div>
                
-                   {{-- puesto --}}
-                   <div class="form-group">
-                    <div class="input-group-prepend">
-                        <label class="col-md-4 control-label">Cargo:*</label>
-                    </div>
-                    <div class="col-md-8">
-                    <input type="text" id="puesto" class="form-control" name="puesto" value="{{$user->cargo}}"
-                            placeholder="Ejemplo. Docente de Español" required>
 
-                    </div>
-                </div>
              
                 
                 
@@ -89,14 +93,23 @@
                     <label class="col-md-4 control-label">Teléfono Célular:</label>
                     </div>
                     <div class="col-md-8">
-                    <input type="tel" id ="telefono" class="form-control" name="telefono" value="{{$user->telefono}}" placeholder="Escribe el número de celular" >
+                    <input type="tel" id ="telefono" class="form-control" name="telefono" value="{{Auth::user()->telefono}}" placeholder="Escribe el número de celular" >
                         <small  class="text-muted">
                         Este número célular se visualizara en el perfil de docente 
                         </small>
                     </div>
                 </div>
                
-                
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                  <label class="col-md-4 control-label">Facebook:</label>
+                  </div>
+                  <div class="col-md-8">
+                      <input type="text" id ="facebook" class="form-control" name="facebook"  {{Auth::user()->facebook}} placeholder="Puedes poner la url del perfil de facebook " >
+                      
+                  </div>
+              </div>
+                                     
                 
 
 
@@ -105,35 +118,23 @@
                   <label class="col-md-4 control-label">Descripcion:*</label>
                   </div>
                   <div class="col-md-8">
-                  <textarea  id="descripcion"  rows="5" cols="50" class="form-control" name="descripcion" placeholder="Escribe una descripcion de docente o administrativo,  lo puede dejar vacio"  >{{$user->descripcion}}</textarea>
+                  <textarea  id="descripcion"  rows="5" cols="50" class="form-control" name="descripcion" placeholder="Escribe una descripcion de docente o administrativo,  lo puede dejar vacio"  >{!!Auth::user()->descripcion!!}</textarea>
                   </div>
                 </div>
                 
 
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                    <label class="col-md-4 control-label">Facebook:</label>
-                    </div>
-                    <div class="col-md-8">
-                        <input type="text" id ="facebook" class="form-control" name="facebook"  {{$user->facebook}} placeholder="Puedes poner la url del perfil de facebook " >
-                        
-                    </div>
-                </div>
 
-
-              
-               
-
-                <div class="form-group">
-                <div class="input-group-prepend">
-                  <label class="col-md-4 control-label">Foto de perfil:</label>
-                  </div>
-                  <div class="col-md-8">
-                  <input type="file" id="url_imagen"  class="form-control" name="url_imagen"   >
-                  </div>
-                </div> 
-
-               
+                <script>
+                  // Replace the <textarea id="editor1"> with a CKEditor 4
+                  // instance, using default configuration.
+                  CKEDITOR.replace( 'descripcion' );
+                  CKEDITOR.editorConfig = function( config ) {
+                      config.language = 'es';
+                      config.uiColor = '#F7B42C';
+                      config.height = 300;
+                      config.toolbarCanCollapse = true;
+                    };
+              </script>
                 
                   
                              

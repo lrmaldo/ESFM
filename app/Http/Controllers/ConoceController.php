@@ -12,6 +12,12 @@ class ConoceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $areas = conoce::all();
@@ -51,7 +57,7 @@ class ConoceController extends Controller
             $area->descripcion = $request->descripcion;
             $area->url_imagen = 'imagenes/area/' . $nombre_foto;
             $area->save();
-            return redirect('areas')->with('success', "Horario creado");
+            return redirect('areas')->with('success', "Área creado correctamente");
         } else {
             return redirect('areas')->with('error', 'No has seleccionado una imagen');
         }
@@ -117,7 +123,7 @@ class ConoceController extends Controller
             $area->descripcion = $request['descripcion' . $id];
             $area->save();
 
-            return redirect('areas')->with('info', 'Horario actualizados');
+            return redirect('areas')->with('info', 'Área actualizado');
         }
     }
 

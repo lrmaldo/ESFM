@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\configuracion;
 use App\portada;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -24,8 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        return view('home',compact('user'));
+        if (Auth::user()->hasRole('director') ||Auth::user()->hasRole('admin') ){
+            $user = User::all();
+            return view('home',compact('user'));
+
+        }else{
+            return redirect('mispublicaciones');
+        }
     }
     public function portada(){
         $portada = portada::find(1);
@@ -59,4 +67,22 @@ class HomeController extends Controller
         }
         /* return view('portada.index'); */
     }
+
+    public function configuracion(){
+        $config = configuracion::find(1);
+        return view('configuracion.index',compact('config'));
+    }
+
+    public function update_configuracion( Request $request, $id){
+        $config = configuracion::find(1);
+        $config->telefono = $request->telefono;
+        $config->correo = $request->correo;
+        $config->quienes = $request->quienes;
+        $config->mision = $request->mision;
+        $config->vision = $request->vision;
+        $config->save();
+
+        return redirect('configuracion')->with('info','Datos actualizados correctamente');
+    }
+
 }

@@ -9,14 +9,17 @@ use App\evento;
 use App\horario;
 use App\modelo;
 use App\publicaciones;
-
+use App\Role;
+use App\User;
 class InicioController extends Controller
 {
     public function index()
     {
         //$user = User::all();
+        $docentes = Role::where('name','docente')->first()->users()->where('activar','=',1)->get();
+        $directores = Role::where('name','director')->first()->users()->get();
         $configuracion = configuracion::find(1)->first();
-        return view('welcome',compact('configuracion'));
+        return view('welcome',compact('configuracion','docentes','directores'));
     }
 
     public function conoce(){
@@ -63,5 +66,14 @@ class InicioController extends Controller
     public function galeria(){
         $galerias = \App\galeria::orderBy('id','desc')->paginate(8);
         return view('galeria',compact('galerias'));
+    }
+
+    public function perfil($id){
+        if(is_null(User::find($id))){
+            return "no se encontro el evento";
+        }
+
+        $docente = User::where('id',$id)->first();
+        return view('perfil',compact('docente'));
     }
 }
