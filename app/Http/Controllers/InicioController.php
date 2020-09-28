@@ -59,4 +59,9 @@ class InicioController extends Controller
         $evento = evento::where('id',$id)->first();
         return view('evento',compact('evento'));
     }
+
+    public function galeria(){
+        $galerias = \App\galeria::all();
+        return view('galeria',compact('galerias'));
+    }
 }

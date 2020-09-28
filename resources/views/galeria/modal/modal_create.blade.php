@@ -9,31 +9,23 @@
                 </button>
             </div>
             <form id="formfile" class="form-horizontal" role="form" method="POST"
-                action="{{ route('areas.store') }}" enctype="multipart/form-data">
+                action="{{ route('migaleria.store') }}" enctype="multipart/form-data">
                 <div class="modal-body">
-                    Sube los datos para crear una nueva area en la sección de conoce tu escuela
+                   Sube un titulo y una imagen para la galeria
                     {{-- <input type="hidden" name="_method" value="DELETE">
                     --}}
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
                         <div class="input-group-prepend">
-                        <label class="col-md-4 control-label">Título:*</label>
+                        <label class="col-md-4 control-label">Título:</label>
                         </div>
                         <div class="col-md-12">
-                            <input type="text" id ="titulo" class="form-control" name="titulo"  placeholder="Escribe un titulo" required>
+                            <input type="text" id ="titulo" class="form-control" name="titulo"  placeholder="Escribe un titulo" >
                             
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group-prepend">
-                        <label class="col-md-4 control-label">Descripción:*</label>
-                        </div>
-                        <div class="col-md-12">
-                            <textarea name="descripcion" id="descripcion" class="form-control" cols="50" rows="5" placeholder="Describe esta área" required></textarea>                            {{-- <input type="text" id ="titulo" class="form-control" name="titulo"  placeholder="Escribe un titulo ejem. 1er Grado" required> --}}
-                            
-                        </div>
-                    </div>
+                  
                     <div class="form-group">
                        
                     <input type="file" class="form-control" name="url_imagen" 

@@ -9,7 +9,7 @@
                 </button>
             </div>
             <form id="formfile" class="form-horizontal" role="form" method="POST"
-                action="{{ route('areas.update',$item->id) }}" enctype="multipart/form-data">
+                action="{{ route('migaleria.update',$item->id) }}" enctype="multipart/form-data">
                 
                 <div class="modal-body">
                     Actualiza los datos
@@ -26,15 +26,7 @@
                             
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group-prepend">
-                        <label class="col-md-4 control-label">Descripción:*</label>
-                        </div>
-                        <div class="col-md-12">
-                        <textarea name="descripcion{{$item->id}}" id="descripcion{{$item->id}}" class="form-control" cols="50" rows="5" placeholder="Describe esta área" required>{{$item->descripcion}}</textarea>                          
-                            
-                        </div>
-                    </div>
+                    
                     <div class="form-group">
                        
                     <input type="file" class="form-control" name="url_imagen{{$item->id}}" id="url_imagen{{$item->id}}" 

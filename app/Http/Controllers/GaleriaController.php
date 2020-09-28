@@ -25,7 +25,7 @@ class GaleriaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +36,23 @@ class GaleriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('url_imagen')) {
+
+            $img = $request->file('url_imagen');
+            $nombre_foto = "foto-" . $request->titulo . time() . "." . $img->getClientOriginalExtension();
+            $destinoPath = public_path('/imagenes/galeria/');
+            $img->move($destinoPath, $nombre_foto);
+
+
+            /* guardar url en la base de datos */
+            $galeria = new  galeria();
+            $galeria->titulo = $request->titulo;
+            $galeria->url_imagen = 'imagenes/galeria/' . $nombre_foto;
+            $galeria->save();
+            return redirect('migaleria')->with('success', "Foto guardado correctamente");
+        } else {
+            return redirect('migaleria')->with('error', 'No has seleccionado una imagen');
+        }
     }
 
     /**
@@ -70,7 +86,37 @@ class GaleriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $galeria = galeria::find($id);
+        if ($request->hasFile('url_imagen' . $id)) {
+            if ($galeria->url_imagen == null) {
+                $checar_img = null;
+            } else {
+                $checar_img = $galeria->url_imagen;
+            }
+            //$checar_img = str_replace($request->root(),'',$portada->url_imagen);
+            if (file_exists($checar_img)) {
+                unlink($checar_img);
+            }
+            $img = $request->file('url_imagen' . $id);
+            $nombre_foto = "foto-" . time() . "." . $img->getClientOriginalExtension();
+            $destinoPath = public_path('/imagenes/galeria/');
+            $img->move($destinoPath, $nombre_foto);
+
+
+            /* guardar url en la base de datos */
+
+            $galeria->titulo = $request['titulo' . $id];
+            
+            $galeria->url_imagen = 'imagenes/galeria/' . $nombre_foto;
+            $galeria->save();
+            return redirect('migaleria')->with('info', "Foto actualizado");
+        } else {
+            $galeria->titulo = $request['titulo' . $id];
+            $galeria->descripcion = $request['descripcion' . $id];
+            $galeria->save();
+
+            return redirect('galeria')->with('info', 'Foto actualizado');
+        }
     }
 
     /**
@@ -81,6 +127,20 @@ class GaleriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $galeria = galeria::find($id);
+        if($galeria->url_imagen==null){
+            $checar_img = null;
+        }else{
+            $checar_img = $galeria->url_imagen;
+        }
+        //$checar_img = str_replace($request->root(),'',$portada->url_imagen);
+        if(file_exists($checar_img)){
+            unlink($checar_img);
+            galeria::destroy($id);
+        }else{
+            galeria::destroy($id);
+        }
+
+        return  redirect('migaleria')->with('success','Se elimino la foto correctamente');
     }
 }

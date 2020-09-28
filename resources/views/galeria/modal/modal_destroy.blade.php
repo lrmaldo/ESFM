@@ -10,12 +10,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ¿Esta seguro que desea eliminar esta área?
+                    ¿Esta seguro que desea eliminar esta  foto  ?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <form id="formdestroy" class="form-horizontal" role="form" method="post"
-                        action="{{ route('areas.destroy', $item->id) }}">
+                        action="{{ route('migaleria.destroy', $item->id) }}">
                         <input type="hidden" name="_method" value="DELETE">
                        
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

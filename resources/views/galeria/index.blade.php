@@ -13,7 +13,7 @@
             <br>
             <a data-toggle="modal" data-target="#ModalCreate" class="btn btn-primary"> <i
                     class="far fa-file-image text-white"></i> Subir foto</a>
-            @include('areas.modal.modal_create')
+            @include('galeria.modal.modal_create')
         </div>
         <div class="card-body">
             <div class="table-responsive">
