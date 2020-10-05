@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-md-7">
                     <a href="/evento/{{$item->id}}">
-                            <img class="img-responsive " width="400" src="{{asset($item->foto_portada)}}" alt="">
+                            <img class="img-fluid" width="400" src="{{asset($item->foto_portada)}}" alt="">
                         </a>
                     </div>
                     <div class="col-md-5">

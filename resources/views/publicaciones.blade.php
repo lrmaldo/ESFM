@@ -35,7 +35,7 @@
                 <div class="text-center">
                    @foreach ($publicaciones as $item)
                    <div class="card mb-4">
-                    <img class="mx-auto rounded " width="450" height="400" src="{{$item->foto_portada}}"  height="600" alt="Card image cap">
+                    <img class="img-fluid " src="{{$item->foto_portada}}"  height="600" alt="Card image cap">
                     <div class="card-body">
                     <h2 class="card-title">{{$item->titulo}}</h2>
                     <p class="card-text">{!!substr($item->descripcion,0,50) !!}...</p>
