@@ -127,9 +127,9 @@
                             </script>
                         </div>
                         <div>
-                            <a href="#">Privacy Policy</a>
+                            <a href="{{url('politica')}}">Política de privacidad</a>
                             &middot;
-                            <a href="#">Terms &amp; Conditions</a>
+                            <a href="{{url('terminos')}}">Terminos &amp; Condiciones</a>
                         </div>
                     </div>
                 </div>

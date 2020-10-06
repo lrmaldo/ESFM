@@ -73,9 +73,9 @@
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; ESFM  <script> document.write(new Date().getFullYear())</script></div>
                             <div>
-                                <a href="#">Privacy Policy</a>
+                                <a href="{{url('politica')}}">Política de privacidad</a>
                                 &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                                <a href="{{url('terminos')}}">Terminos &amp; Condiciones</a>
                             </div>
                         </div>
                     </div>

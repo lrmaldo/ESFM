@@ -8,8 +8,8 @@
             <a class="btn btn-dark btn-social mx-2" href="mailto:{{App\configuracion::find(1)->correo}}"><i class="fa fa-envelope"></i></a>
             </div>
             <div class="col-lg-4 text-lg-right">
-                <a class="mr-3" href="#!">Política de privacidad</a>
-                <a href="#!">Terminos y condiciones</a>
+            <a class="mr-3" href="{{url('politica')}}">Política de privacidad</a>
+                <a href="{{url('terminos')}}">Terminos y condiciones</a>
             </div>
         </div>
         <br>

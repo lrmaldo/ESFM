@@ -31,6 +31,9 @@ Route::PUT('perfil/update/{id}',['as'=>'edit_perfil.update',
 
 
 
+/* ruta de contaco post contacto_form */
+Route::POST('contacto_form',['as'=>'contacto.post',
+'uses'=>'InicioController@contacto_form']);
 
 
 
@@ -74,7 +77,51 @@ Route::get('/configuracion','HomeController@configuracion');
 Route::PUT('configuracion/update/{id}',['as'=>'configuracion.update',
 'uses'=>'HomeController@update_configuracion']);
 
-/* rol de usuario */
+/* politicas */
+Route::get('politica',function(){
+
+    return view('politica');
+
+});
+
+/* terminos */
+
+Route::get('terminos',function(){
+
+    return view('terminos');
+
+});
+
+/* php artisan route */
+Route::get('clear_cache', function () {
+
+    \Artisan::call('cache:clear');
+
+    dd("Cache is cleared");
+
+});
 
 
+Route::get('config_cache', function () {
 
+    \Artisan::call('config:cache');
+
+    dd("Config and Cache is cleared");
+
+});
+
+Route::get('clear_route', function () {
+
+    \Artisan::call('route:clear');
+
+    dd("Route is cleared");
+
+});
+
+Route::get('view_cache', function () {
+
+    \Artisan::call('view:clear');
+
+    dd("View is cleared");
+
+});
